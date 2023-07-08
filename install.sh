@@ -22,11 +22,12 @@ cd menu_demo-main
 
 sudo apt install make
 make
-cd .. && mv menu_demo-main/main .
-chmod +x main
+mv main*[0-9] ..
+cd ..
+chmod +x main*[0-9]
 
 # Очистка
 rm -rf main.zip menu_demo-main
 sudo apt autoremove
 
-echo "Исполняемый файл программы находится в текущей дерриктории и называется main"
+echo "Исполняемый файл программы находится в текущей дерриктории и начинается с main"

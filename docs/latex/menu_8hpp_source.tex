@@ -1,0 +1,61 @@
+\doxysection{menu.\+hpp}
+\hypertarget{menu_8hpp_source}{}\label{menu_8hpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ file:\ menu.hpp}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ KEY\_ESCAPE\ 27}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ KEY\_Q\ 81}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ KEY\_q\ 113}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\#define\ K\_ENTER\ 10}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//constexpr\ char\ KEY\_RETURN\ =\ '\(\backslash\)n';}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ ushort;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{enum}\ menu\_type}
+\DoxyCodeLine{00019\ \ \ \ \ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ SIMPLE\_MENU,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ SIMPLE\_CONTEXT\_MENU,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Будет\ реализовано\ в\ будущем}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ ADVANCED\_MENU,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ ADVANCED\_CONTEXT\_MENU}
+\DoxyCodeLine{00025\ \ \ \ \ \};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMenu}{Menu}}}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{class\ }menu\_item}
+\DoxyCodeLine{00030\ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ std::string\ str\ =\ \textcolor{stringliteral}{"{}не\ инициализирован"{}};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_init\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ void\ (*exec)\ ();}
+\DoxyCodeLine{00035\ \ \ \ \ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ menu\_item*\ menu;}
+\DoxyCodeLine{00040\ \ \ \ \ std::string\ menu\_header;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ size;}
+\DoxyCodeLine{00042\ \ \ \ \ menu\_type\ mtype;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//bool\ is\_size\_init\ =\ false;}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ public\ :}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classMenu}{Menu}}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short},\ std::string,\ menu\_type\ mtype\ =\ menu\_type::SIMPLE\_MENU);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ add\_item\ (\textcolor{keywordtype}{void}\ (*)\ (),\ \textcolor{keywordtype}{int},\ std::string);}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_all\_init\ ()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ Запустить\ меню}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ exec\ ()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ Деструктор}}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classMenu}{\string~Menu}}\ ();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \};}
+
+\end{DoxyCode}
