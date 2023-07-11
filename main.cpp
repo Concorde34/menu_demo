@@ -15,16 +15,15 @@ void foo6 ();
 int main ()
 {
 
-    Menu menu1 (6, "Главное меню программы:");
+    Menu menu ("Выберите пункт", menu_type::SIMPLE_MENU);
 
-    menu1.add_item(foo1, 0, "Первый пункт");
-    menu1.add_item(foo2, 1, "Второй пункт");
-    menu1.add_item(foo3, 2, "Третий пункт");
-    menu1.add_item(foo4, 3, "Четвёртый пункт");
-    menu1.add_item(foo5, 4, "Пятый пункт");
-    menu1.add_item(foo6, 5, "Шестой пункт");
+    menu.add_item(foo1, "Пункт первый");
+    menu.add_item(foo2, "Пункт второй");
+    menu.add_item(foo3, "Пункт третий");
+    menu.add_item(foo4, "Пункт четвёртый");
+    menu.add_item(foo5, "Пункт пятый");
 
-    menu1.exec();
+    menu.exec();
 
     return 0;
 
@@ -33,7 +32,6 @@ int main ()
 void foo1 ()
 {
     printw ("Выполнение foo1\n");
-    char name [100];
 }
 
 void foo2 ()

@@ -15,37 +15,44 @@
 
 //typedef unsigned short ushort;
 
-Menu::Menu (ushort size, std::string menu_header, menu_type mtype)
+Menu::Menu ( std::string menu_header, menu_type mtype) : menu_header (menu_header)
 {
-    size > 0 ? this->size = size : throw std::invalid_argument ("Неверные размер меню");
-    menu_header.empty () ? this->menu_header = "Меню:" : this->menu_header = menu_header;
-    menu = new menu_item [size];
+    // size > 0 ? this->size = size : throw std::invalid_argument ("Неверные размер меню");
+    // menu_header.empty () ? this->menu_header = "Меню:" : this->menu_header = menu_header;
+    // menu = new menu_item [size];
     this->mtype = mtype;
+    bool corr_mtype = mtype == menu_type::SIMPLE_MENU or mtype == menu_type::SIMPLE_CONTEXT_MENU or mtype == menu_type::ADVANCED_MENU or mtype == menu_type::ADVANCED_CONTEXT_MENU;
+    corr_mtype ? this->mtype = mtype : throw std::invalid_argument ("Неизвестный тип меню");
+
     //is_size_init = true;
 
 }
 
-void Menu::add_item (void (*exec) (), int inum , std::string item_str)
+void Menu::add_item (void (*exec) () , std::string item_str)
 {
 
-    if (inum >= 0 and inum < size)
-    {
-        // Починить.
-        menu[inum].exec = exec;
-        menu[inum].str = item_str;
-        menu[inum].is_init = true;
-    }
-    else
-    {
-        throw std::out_of_range("Неправильный номер пункта меню");
-    }
+    menu.push_back (menu_item (exec, item_str));
+    menu.back().is_init = true;
+
+
+    // if (inum >= 0 and inum < size)
+    // {
+    //     menu[inum].exec = exec;
+    //     menu[inum].str = item_str;
+    //     menu[inum].is_init = true;
+    // }
+    // else
+    // {
+    //     throw std::out_of_range("Неправильный номер пункта меню");
+    // }
+
 }
 
 bool Menu::is_all_init () const
 {
-    for (ushort i = 0; i < size; ++i)
+    for (auto item : menu)
     {
-        if ( not menu[i].is_init)
+        if (not item.is_init)
             return false;
     }
     return true;
@@ -88,15 +95,15 @@ void Menu::exec () const
 
         // Вывод пунктов меню в моменте
 
-        for (ushort i = 0; i < size; ++i)
+        for (ushort i = 0; i < menu.size(); ++i)
         {
             if (i == selected)
             {
-                printw ("\t==>%s", menu[i].str.c_str());
+                printw ("\t==>%s", menu.at(i).str.c_str());
             }
             else
             {
-                printw ("\t\t%s", menu[i].str.c_str());
+                printw ("\t\t%s", menu.at(i).str.c_str());
             }
             printw ("\n");
         }
@@ -109,14 +116,14 @@ void Menu::exec () const
         switch (input)
         {
         case KEY_UP:
-            selected == 0 ? selected = size - 1 : --selected;
+            selected == 0 ? selected = menu.size() - 1 : --selected;
             break;
         case KEY_DOWN:
-            selected == size - 1 ? selected = 0 : ++selected;
+            selected == menu.size() - 1 ? selected = 0 : ++selected;
             break;
         case K_ENTER:
             clear ();
-            menu[selected].exec();
+            menu.at(selected).exec ();
 
             getch ();
         }
@@ -135,5 +142,5 @@ void Menu::exec () const
 
 Menu::~Menu ()
 {
-    delete[] menu;
+    menu.clear();
 }
