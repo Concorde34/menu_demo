@@ -2,6 +2,7 @@
 #include <iostream>
 #include "menu.hpp"
 #include <ncurses.h>
+#include <clocale>
 
 using namespace std;
 
@@ -14,6 +15,7 @@ void foo6 ();
 
 int main ()
 {
+    setlocale (LC_ALL, "ru_RU.UTF-8");
 
     Menu menu ("Выберите пункт", menu_type::SIMPLE_MENU);
 
