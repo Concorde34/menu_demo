@@ -6,7 +6,7 @@ LIBS = -lncurses
 CPP = main.cpp menu.cpp
 
 # Версия
-VERSION := 1.2
+VERSION := 1.2.1
 
 # Определение флага компилятора с версией
 CPPFLAGS := -DVERSION=\"$(VERSION)\"
